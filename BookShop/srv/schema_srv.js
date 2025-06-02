@@ -14,8 +14,8 @@ module.exports = function () {
 
     this.on("rateBook", async (req) => {
         try {
-            const insertedReview = await INSERT.into(Reviews).columns('ID', 'book_ID', 'rating')
-            .values(18, req.data.bookID, req.data.rating);
+            const insertedReview = await INSERT.into(Reviews).columns('R_ID', 'book_B_ID', 'rating')
+            .values(R4, req.data.book_B_ID, req.data.rating);
             return req.data;
         }
         catch (error) {
@@ -24,7 +24,7 @@ module.exports = function () {
     });
 
     this.on("getPopularBook", async (req) => {
-        const highestRatedBook = await SELECT.from(Reviews).columns`{ MAX(rating) as rating, comment,book_ID}`;
+        const highestRatedBook = await SELECT.from(Reviews).columns`{ MAX(rating) as rating,comment,book_B_ID}`;
         return highestRatedBook;
     });
 }

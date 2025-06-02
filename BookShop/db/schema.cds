@@ -1,12 +1,15 @@
 namespace com.sap.bookshop;
 using {Language,Currency,managed} from '@sap/cds/common';
+
 type ISBN: String(15);
+type Amount : Decimal(9,2);
 entity Books :managed {
     key B_ID: String(20);
     title: String(60);
     author: Association to Authors;
     isbn : ISBN;
     stock:Integer;
+    amount:Amount;
     price: Currency;
     discount: Integer;
     publisher: Association to Publishers;

@@ -91,6 +91,7 @@ annotate service.Books with {
     author @Common.ValueList : {
         $Type : 'Common.ValueListType',
         CollectionPath : 'Authors',
+        Label : 'Authors',
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',

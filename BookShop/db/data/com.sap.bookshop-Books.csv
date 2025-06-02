@@ -1,4 +1,4 @@
-B_ID,title,author_A_ID,isbn,stock,price_code,discount,publisher_P_ID,Language_code,createdAt,createdBy,modifiedAt,modifiedBy
-1,The Art of CAP,1,436782,45,USD,10,1,EN,2025-02-12,Manish,2025-02-12,Royal
-2,Mastering CDS,2,638739,34,USD,10,2,EN,2025-02-12,Mitish,2025-02-12,Royal
-3,SAP for Beginners,1,523728,12,USD,10,1,EN,2025-02-12,Royal,2025-02-12,Royal
+B_ID,title,author_A_ID,isbn,stock,amount,price_code,discount,publisher_P_ID,Language_code,createdAt,createdBy,modifiedAt,modifiedBy
+1,The Art of CAP,1,436782,45,23,USD,10,1,EN,2025-02-12,Manish,2025-02-12,Royal
+2,Mastering CDS,2,638739,34,10,USD,10,2,EN,2025-02-12,Mitish,2025-02-12,Royal
+3,SAP for Beginners,1,523728,15,12,USD,10,1,EN,2025-02-12,Royal,2025-02-12,Royal

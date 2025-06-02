@@ -18,10 +18,10 @@ Content-Type: application/json
 {"authorName": "J.K.Rowling", "address": "France","A_ID":"4","pincode":678765}
 
 
-# ###
-# # Get Top-rated Book
-# ###
-# GET http://localhost:4004/odata/v4/book-shop/getPopularBook()
+##
+# Get Top-rated Book
+##
+GET http://localhost:4004/odata/v4/book-shop/getPopularBook()
 
 # ###
 # # Rate Book

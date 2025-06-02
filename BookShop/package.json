@@ -6,10 +6,13 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^8",
-    "express": "^4",
     "@cap-js/hana": "^1",
-    "@sap/xssec": "^4"
+    "@sap/cds": "^8",
+    "@sap/xssec": "^4",
+    "buffer-crc32": "^1.0.0",
+    "express": "^4",
+    "ui5-task-zipper": "^3.4.1",
+    "yazl": "^3.3.1"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
@@ -25,14 +28,33 @@
       "native_hana_associations": false
     },
     "requires": {
+      "db": "sqlite",
       "[production]": {
         "db": "hana",
         "auth": "xsuaa"
       },
-      "html5-runtime": true,
-      "destinations": true,
-      "workzone": true
-    }
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "ayon123@cpg.com": {
+              "password": "12345",
+              "roles": [
+                "admin"
+              ]
+            },
+            "ayon": {
+              "roles": [
+                "customer"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "html5-runtime": true,
+    "destinations": true,
+    "workzone": true
   },
   "sapux": [
     "app/bookshop"
