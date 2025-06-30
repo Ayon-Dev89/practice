@@ -3,11 +3,23 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/?odata/(.*)$",
+      "source": "^/odata/(.*)$",
       "target": "/odata/$1",
-      "destination": "srv-api",
+      "destination": "BookShop-html5-repository",
       "authenticationType": "xsuaa",
-      "csrfProtection": true
+      "csrfProtection": false
+    },
+    {
+      "source": "^/resources/(.*)$",
+      "target": "/resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^/test-resources/(.*)$",
+      "target": "/test-resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
     },
     {
       "source": "^(.*)$",

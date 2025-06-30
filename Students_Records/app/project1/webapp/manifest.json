@@ -1,7 +1,7 @@
 {
   "_version": "1.65.0",
   "sap.app": {
-    "id": "com.sap.bookshop.bookshop",
+    "id": "com.sap.school.project1",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,12 +12,12 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.17.5",
-      "toolsId": "cf12840d-1cc2-4d03-9cca-fd8a859a1aee"
+      "version": "1.18.0",
+      "toolsId": "0ce9a53b-4caa-4178-9d8c-d363cdcfe8ab"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/book-shop/",
+        "uri": "/odata/v4/school/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -27,17 +27,17 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "Books-managed": {
-          "semanticObject": "Books",
-          "action": "managed",
-          "title": "{{Books-managed.flpTitle}}",
+        "School-display": {
+          "semanticObject": "School",
+          "action": "display",
+          "title": "{{School-display.flpTitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
           }
         },
-        "bookshop-display": {
-          "semanticObject": "bookshop",
+        "project1-display": {
+          "semanticObject": "project1",
           "action": "display",
           "signature": {
             "parameters": {},
@@ -66,7 +66,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.135.0",
+      "minUI5Version": "1.136.2",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -81,7 +81,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.bookshop.bookshop.i18n.i18n"
+          "bundleName": "com.sap.school.project1.i18n.i18n"
         }
       },
       "": {
@@ -106,33 +106,33 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "BooksList",
-          "target": "BooksList"
+          "name": "StudentsList",
+          "target": "StudentsList"
         },
         {
-          "pattern": "Books({key}):?query:",
-          "name": "BooksObjectPage",
-          "target": "BooksObjectPage"
+          "pattern": "Students({key}):?query:",
+          "name": "StudentsObjectPage",
+          "target": "StudentsObjectPage"
         },
         {
-          "pattern": "Books({key})/reviews({key2}):?query:",
-          "name": "ReviewsObjectPage",
-          "target": "ReviewsObjectPage"
+          "pattern": "Students({key})/subjects({key2}):?query:",
+          "name": "SubjectsObjectPage",
+          "target": "SubjectsObjectPage"
         }
       ],
       "targets": {
-        "BooksList": {
+        "StudentsList": {
           "type": "Component",
-          "id": "BooksList",
+          "id": "StudentsList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Books",
+              "contextPath": "/Students",
               "variantManagement": "Page",
               "navigation": {
-                "Books": {
+                "Students": {
                   "detail": {
-                    "route": "BooksObjectPage"
+                    "route": "StudentsObjectPage"
                   }
                 }
               },
@@ -146,32 +146,32 @@
             }
           }
         },
-        "BooksObjectPage": {
+        "StudentsObjectPage": {
           "type": "Component",
-          "id": "BooksObjectPage",
+          "id": "StudentsObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Books",
+              "contextPath": "/Students",
               "navigation": {
-                "reviews": {
+                "subjects": {
                   "detail": {
-                    "route": "ReviewsObjectPage"
+                    "route": "SubjectsObjectPage"
                   }
                 }
               }
             }
           }
         },
-        "ReviewsObjectPage": {
+        "SubjectsObjectPage": {
           "type": "Component",
-          "id": "ReviewsObjectPage",
+          "id": "SubjectsObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Books/reviews"
+              "contextPath": "/Students/subjects"
             }
           }
         }
@@ -184,6 +184,6 @@
   },
   "sap.cloud": {
     "public": true,
-    "service": "BookShop.service"
+    "service": "Employee.service"
   }
 }

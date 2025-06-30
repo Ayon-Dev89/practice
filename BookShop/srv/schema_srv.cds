@@ -6,11 +6,12 @@ service BookShopService @(impl:'./schema_srv.js',requires:['admin','system-user'
     entity Authors    as projection on db.Authors;
     entity Reviews    as projection on db.Reviews;
     entity Publishers as projection on db.Publishers;
+
     action  rateBook(bookID : Integer, rating : Integer) returns Books;
     function getPopularBook() returns Books;
 
 }
-service CustomerService @(requires:['admin''customer']){
+service CustomerService @(requires:['customer']){
     @readonly
     entity Books      as projection on db.Books;
 

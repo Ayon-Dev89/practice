@@ -30,6 +30,11 @@ annotate service.Books with @(
             },
             {
                 $Type : 'UI.DataField',
+                Label : 'amount',
+                Value : amount,
+            },
+            {
+                $Type : 'UI.DataField',
                 Label : 'price_code',
                 Value : price_code,
             },
@@ -91,7 +96,6 @@ annotate service.Books with {
     author @Common.ValueList : {
         $Type : 'Common.ValueListType',
         CollectionPath : 'Authors',
-        Label : 'Authors',
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',

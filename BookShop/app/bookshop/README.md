@@ -1,18 +1,18 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue May 13 2025 16:10:57 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon Jun 02 2025 08:24:06 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.17.5|
+|**App Generator Version**<br>1.17.6|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/book-shop/|
 |**Module Name**<br>bookshop|
-|**Application Title**<br>Book Shop|
-|**Namespace**<br>com.sap.bookshop|
+|**Application Title**<br>bookshop|
+|**Namespace**<br>com.cpg.bookshop|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.135.0|
+|**UI5 Version**<br>1.136.1|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|

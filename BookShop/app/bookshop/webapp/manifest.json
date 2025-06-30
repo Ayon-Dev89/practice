@@ -1,7 +1,7 @@
 {
   "_version": "1.65.0",
   "sap.app": {
-    "id": "com.sap.bookshop.bookshop",
+    "id": "com.cpg.bookshop.bookshop",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.17.5",
-      "toolsId": "cf12840d-1cc2-4d03-9cca-fd8a859a1aee"
+      "version": "1.17.6",
+      "toolsId": "51d2b0d3-7641-49d3-ab58-fb5ac46f1124"
     },
     "dataSources": {
       "mainService": {
@@ -31,14 +31,6 @@
           "semanticObject": "Books",
           "action": "managed",
           "title": "{{Books-managed.flpTitle}}",
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          }
-        },
-        "bookshop-display": {
-          "semanticObject": "bookshop",
-          "action": "display",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -66,7 +58,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.135.0",
+      "minUI5Version": "1.136.1",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -81,7 +73,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.bookshop.bookshop.i18n.i18n"
+          "bundleName": "com.cpg.bookshop.bookshop.i18n.i18n"
         }
       },
       "": {

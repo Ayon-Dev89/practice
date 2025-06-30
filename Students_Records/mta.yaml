@@ -1,0 +1,154 @@
+_schema-version: 3.3.0
+ID: Employee
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: Employee-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: Employee-destination
+      - name: Employee-db
+      - name: Employee-auth
+
+  - name: Employee-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: Employee-db
+
+  - name: Employee-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: Employee-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: Employeeproject1
+          artifacts:
+            - project1.zip
+          target-path: app/
+
+  - name: Employeeproject1
+    type: html5
+    path: app/project1
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+
+  - name: Employee-destinations
+    type: com.sap.application.content
+    requires:
+      - name: Employee-auth
+        parameters:
+          service-key:
+            name: Employee-auth-key
+      - name: Employee-html5-repo-host
+        parameters:
+          service-key:
+            name: Employee-html5-repo-host-key
+      - name: srv-api
+      - name: Employee-destination
+        parameters:
+          content-target: true
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: Employee-html5-repository
+              ServiceInstanceName: Employee-html5-repo-host
+              ServiceKeyName: Employee-html5-repo-host-key
+              sap.cloud.service: Employee.service
+            - Name: Employee-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: Employee-auth
+              ServiceKeyName: Employee-auth-key
+              sap.cloud.service: Employee.service
+
+resources:
+  - name: Employee-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+  - name: Employee-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: Employee-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: Employee-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: Employee-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: Employee-${org}-${space}
+        tenant-mode: dedicated
