@@ -1,5 +1,5 @@
 const cds = require("@sap/cds");
-const { Upskills_emp } = cds.entities("com.shivam");
+const { Upskills_emp } = cds.entities("com.sap.capgemini");
 
 
 module.exports["adminService"] = srv =>{

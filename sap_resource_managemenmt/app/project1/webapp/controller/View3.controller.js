@@ -7,7 +7,7 @@ sap.ui.define([
     "use strict";
     var sModulesParam;
 
-    return Controller.extend("sapresourcemanagement.controller.View3", {
+    return Controller.extend("com.sap.capgemini.project1.controller.View3", {
         onInit() {
             const oModel = new sap.ui.model.odata.v4.ODataModel({
                 serviceUrl: "/admin/"
@@ -22,6 +22,7 @@ sap.ui.define([
                const sId = oEvent.getParameter("arguments").upskillId;
                sModulesParam = oEvent.getParameter("arguments").module;
                this.sId = sId;
+               debugger;
                const oModel = this.getView().getModel(); // OData model
                const oBinding = oModel.bindList("/zupskills_empSRV");
              
@@ -30,7 +31,7 @@ sap.ui.define([
                    .map(ctx => ctx.getObject())
                    .filter(entry => entry.id === sId);
                    
-             
+             debugger;
                  const oJSONModel = new sap.ui.model.json.JSONModel(aFiltered);
                  this.getView().setModel(oJSONModel, "MasterModel");
                }.bind(this));

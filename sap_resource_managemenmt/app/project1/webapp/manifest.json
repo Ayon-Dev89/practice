@@ -120,7 +120,7 @@
         },
         {
           "name": "RouteView3",
-          "pattern": "View3/{module}",
+          "pattern": "View3/{upskillId}/{module}",
           "target": [
             "TargetView3"
           ]
