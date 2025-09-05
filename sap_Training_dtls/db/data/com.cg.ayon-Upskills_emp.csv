@@ -1,0 +1,21 @@
+id,trainingid,trainingname,numberofdays,startdate,completiondate,status
+1,T001,SAP FI Basics,5,2025-07-10,2025-07-15,Completed
+1,T002,Advanced Financial Reporting,7,2025-08-01,2025-08-08,Planned
+2,T003,Inventory Management,4,2025-07-12,2025-07-16,Completed
+2,T004,SAP MM Integration,6,2025-08-05,2025-08-11,Ongoing
+3,T005,ABAP Fundamentals,5,2025-07-10,2025-07-15,Completed
+3,T006,Object-Oriented ABAP,8,2025-08-01,2025-08-09,Planned
+4,T007,HR Core Processes,3,2025-07-15,2025-07-18,Completed
+4,T008,Payroll Automation,6,2025-08-03,2025-08-09,Ongoing
+5,T009,Production Planning Tools,5,2025-07-11,2025-07-16,Completed
+5,T010,Workflow Optimization,4,2025-08-04,2025-08-08,Planned
+6,T011,Sales Order Lifecycle,3,2025-07-13,2025-07-16,Completed
+6,T012,SAP SD Analytics,6,2025-08-02,2025-08-08,Ongoing
+7,T013,System Landscape Configuration,5,2025-07-14,2025-07-19,Completed
+7,T014,BASIS Monitoring Tools,6,2025-08-01,2025-08-07,Planned
+8,T015,QM Inspection Setup,4,2025-07-10,2025-07-14,Completed
+8,T016,Compliance Reporting,5,2025-08-03,2025-08-08,Ongoing
+9,T017,HANA Data Modeling,6,2025-07-12,2025-07-18,Completed
+9,T018,Performance Tuning in HANA,5,2025-08-05,2025-08-10,Planned
+10,T019,Fiori App Design,5,2025-07-11,2025-07-16,Completed
+10,T020,UI5 Framework Deep Dive,7,2025-08-04,2025-08-11,Ongoing

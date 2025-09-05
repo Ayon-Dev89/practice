@@ -1,4 +1,0 @@
-R_ID,rating,comment,reviewer,book_B_ID,createdAt,createdBy,modifiedAt,modifiedBy
-R1,5,Excellent,John Doe,1,2025-02-12,Royal,2025-02-12,Royal
-R2,4,Very informative,Jane Smith,1,2025-02-12,Royal,2025-02-12,Royal
-R3,3,Good content,Max Mustermann,2,2025-02-12,Royal,2025-02-12,Royal

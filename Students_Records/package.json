@@ -34,8 +34,8 @@
     "requires": {
       "destinations": true,
       "html5-runtime": true,
-      "workzone": true,
-      "auth": "xsuaa"
+      "workzone": true
+      
     }
   },
   "sapux": [

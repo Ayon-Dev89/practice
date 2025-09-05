@@ -1,0 +1,7 @@
+{
+  "xsappname": "sap_Training_dtls",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

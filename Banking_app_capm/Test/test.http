@@ -1,0 +1,126 @@
+@baseUrl = http://localhost:4004
+
+### metadata for all entity expose in AdmineService
+GET {{baseUrl}}/admin/$metadata
+Accept: application/json
+
+
+### metadata for all entity expose in AdmineService
+GET {{baseUrl}}/admin/Bank
+Accept: application/json
+
+###
+POST {{baseUrl}}/admin/People
+Content-Type: application/json
+
+{
+  "email": "ayon123@example.com",
+  "First_name": "Ayon",
+  "Last_name": "Dwary",
+  "gender": "Male",
+  "mobile": "+919876543210",
+  "Address": "22 Lotus Residency",
+  "City": "Thane",
+  "State": "Maharashtra",
+  "Postal_code": "400601",
+  "Dob": "2000-04-12",
+  "SSN": "KPS981204M",
+  "Password": "Ayon@123"
+}
+
+###
+POST {{baseUrl}}/admin/People
+Content-Type: application/json
+
+{
+  "email": "shubhamBaishya@gmail.com",
+  "First_name": "Shubham",
+  "Last_name": "Baishya",
+  "gender": "Male",
+  "mobile": "+919876543210",
+  "Address": "22 Lotus Residency",
+  "City": "Thane",
+  "State": "Maharashtra",
+  "Postal_code": "400601",
+  "Dob": "1998-04-12",
+  "SSN": "KPS981204M",
+  "Password": "Vivaan!123"
+
+}
+
+
+###
+POST {{baseUrl}}/admin/Bank
+Content-Type: application/json
+
+{
+  "email": "ayon123@example.com",
+  "bank_name": "IDFC Bank",
+  "card_number": "1234567890123459",
+  "expire_date": "2026-09-30",
+  "amount" : "10000.00"
+}
+
+###
+POST {{baseUrl}}/admin/Bank
+Content-Type: application/json
+
+{
+  "email": "shubhamBaishya@gmail.com",
+  "bank_name": "IDFC Bank",
+  "card_number": "1234567890123458",
+  "expire_date": "2026-09-30",
+  "amount" : "10000.00"
+}
+
+
+####
+POST {{baseUrl}}/admin/Transaction
+Content-Type: application/json
+
+{
+  "email": "ayon123@example.com",
+  "bank_name": "HDFC Bank",
+  "card_number": "1234567890123456",
+  "transaction": "Bill Payment",
+  "amount": 2500.75,
+  "status": "Success",
+  "category": "Utilities",
+  "message": "Electricity bill payment via UPI",
+  "recipant_bank_number": "9876543210123456"
+}
+
+
+####
+POST {{baseUrl}}/admin/Transaction
+Content-Type: application/json
+
+{
+  "email": "shubhamBaishya@gmail.com",
+  "bank_name": "HDFC Bank",
+  "card_number": "1234567890123456",
+  "transaction": "Bill Payment",
+  "amount": 2500.75,
+  "status": "Success",
+  "category": "Utilities",
+  "message": "Electricity bill payment via UPI",
+  "recipant_bank_number": "9876543210123456"
+}
+
+
+###
+PATCH {{baseUrl}}/admin/Bank('4dc6ea79-b504-41fa-9b35-53d43d37c5a2')
+Content-Type: application/json
+
+{
+  "email": "ayon123@example.com",
+  "bank_name": "HDFC Bank1",
+  "card_number": "1234567890123456",
+  "expire_date": "2026-09-30",
+  "modifiedBy" : "shivam",
+  "createdBy": "shivam"
+}
+
+
+####
+DELETE {{baseUrl}}/admin/Transaction('57c0aad3-315c-4054-a8fb-dcedeb7ad493')

@@ -1,0 +1,132 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.cg.ayon.project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.5",
+      "toolsId": "3cd4fe0b-a490-4dbf-afa4-8f48975b7cfe"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/admin/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.139.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.cg.ayon.project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.cg.ayon.project1.view",
+        "async": true,
+        "viewPath": "com.cg.ayon.project1.view"
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        },
+         {
+          "name": "RouteView2",
+          "pattern": "View2{/module}",
+          "target": [
+            "TargetView2"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        },
+          "TargetView2": {
+          "id": "View2",
+          "name": "View2"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.cg.ayon.project1.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "sap_Training_dtls.service"
+  }
+}

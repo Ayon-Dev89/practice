@@ -1,0 +1,40 @@
+{
+  "name": "sap_Training_dtls",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^9",
+    "express": "^4",
+    "@cap-js/hana": "^2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.13.0",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": ">=8",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy sap_Training_dtls --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-runtime": true,
+      "workzone": true
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<mvc:View controllerName="com.cg.ayon.project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page1" title="{i18n>title}">
+
+    <content>
+
+    <VBox id="mainVBox" justifyContent="Center" alignItems="Center" width="92%" height="80%">
+                            <Panel id="_IDGenPanel" class="sapUiResponsiveMargin borderedPanel">
+                                <headerToolbar>
+                                    <Toolbar id="_IDGenToolbar">
+                                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                                        <Title id="_IDGenTitle" text="MALS Factory" level="H1" class="sapUiMediumMargin" />
+                                        <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+                                    </Toolbar>
+                                </headerToolbar>
+                                <content>
+                                    <VBox id="_IDGenVBox" class="sapUiSmallMargin" alignItems="Center">
+                                        <HBox id="_IDGenHBox" class="sapUiSmallMargin" alignItems="Center">
+                                            <Text id="_IDGenText" text="Module Wise Resources" class="sapUiMediumMarginEnd"/>
+                                        <MultiComboBox id="moduleSelect" width="300px" selectionChange="onModuleChange" placeholder="Enter Module Name"  items="{DropdownModel>/}">
+                                    <core:Item id="_IDGenItem" key="{DropdownModel>module}" text="{DropdownModel>module}" />
+                    </MultiComboBox>
+                                        </HBox>
+                    <Button id="_IDGenButton" text="Execute" type="Emphasized" press="onExecute"  >
+                </Button>
+            </VBox>
+                                </content>
+                            </Panel>
+                        </VBox>
+    
+    
+    </content>
+    </Page>
+</mvc:View>
