@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.cg.ayon.project1.controller.View2"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-     <Page id="page2" title="Capgemini" class="page2" showNavButton="true" navButtonPress="onBack">
+     <Page id="page1" title="Capgemini" class="page1" showNavButton="true" navButtonPress="onBack">
      <Panel id="_IDGenPanel2" class = "sapUiResponsiveMargin" width="95%">
      
      <Table  id="employeeTable" items="{MasterModel>/}">

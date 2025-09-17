@@ -53,7 +53,7 @@ sap.ui.define([
             console.log("Encoded Modules Param:", sModulesParam); // Debug
 
 
-            this.getOwnerComponent().getRouter().navTo("RouteView2",{
+          this.getOwnerComponent().getRouter().navTo("RouteView2",{
               module: sModulesParam
             });
           }

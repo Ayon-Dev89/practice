@@ -1,0 +1,55 @@
+<mvc:View controllerName="com.cg.ayon.project1.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt">
+    <Page id="page2" title="Capgemini" class = "page2"  showNavButton="true"  navButtonPress="onBack1" >
+
+        <Panel id="_IDGenPanel1"  class = "sapUiResponsiveMargin" width="95%">
+            <Table
+                id="employeeTable1"
+                items="{MasterModel>/}"
+                mode="SingleSelectMaster">
+
+                <headerToolbar>
+                    <Toolbar id="_IDGenToolbar6" >
+                        <Title id="_IDGenTitle2" text=""></Title>
+                    </Toolbar>
+                </headerToolbar>
+                
+                <columns>
+                <Column id="_IDGenColumn13" ><Text id="_IDGenText27" text=" User ID" /></Column>
+                <Column id="_IDGenColumn" ><Text id="_IDGenText14"  text=" Training ID" /></Column>
+                <Column id="_IDGenColumn8" ><Text id="_IDGenText15" text="Tranining Name" /></Column>
+                <Column id="_IDGenColumn9" ><Text id="_IDGenText16" text="Days Required" /></Column>
+                <Column id="_IDGenColumn10" ><Text id="_IDGenText17" text="Start Date" /></Column>
+                <Column id="_IDGenColumn11" ><Text id="_IDGenText18" text="Completion Date" /></Column>
+                <Column id="_IDGenColumn12" ><Text id="_IDGenText19" text="Status" /></Column>
+                </columns>
+
+                <items>
+                <ColumnListItem id="_IDGenColumnListItem1">
+                    <cells>
+                    <Text id="_IDGenText20"   text="{MasterModel>id}" />
+                    <Text id="_IDGenText21"  text="{MasterModel>trainingid}" />
+                    <Text id="_IDGenText22"  text="{MasterModel>trainingname}" />
+                    <Text id="_IDGenText23" text="{MasterModel>numberofdays}" />
+                    <Text id="_IDGenText24" text="{MasterModel>startdate}" />
+                    <Text id="_IDGenText25" text="{MasterModel>completiondate}" />
+                    <tnt:InfoLabel id="il1" text="{MasterModel>status}" renderMode="Narrow" colorScheme = "{path: 'MasterModel>status', formatter: '.formatter.statusColorScheme'}" />
+                    </cells>
+                </ColumnListItem>
+                </items>
+            </Table>
+            
+            </Panel>
+
+        <footer>
+            <Toolbar id="_IDGenToolbar1" >
+                <ToolbarSpacer id="_IDGenToolbarSpacer"/>
+                <Button id="_IDGenButton2" textDirection="RTL" class = "sapUiResponsiveMargin" type="Emphasized" text="Create Entry" press="onCreate" />
+                <Button id="_IDGenButton5"  textDirection="RTL" class = "sapUiResponsiveMargin" text="Update Entry" press="onUpdate" />
+                <Button id="_IDGenButton6"  textDirection="RTL" class = "sapUiResponsiveMargin" text="Delete Entry" press="onDelete" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog id="createDialog" title="Create Upskilling Entry" class="sapUiResponsivePadding">
+    <VBox id="_IDGenVBox2" class="sapUiSmallMargin">
+    
+      <Input id="userIdInput" placeholder="User ID" editable="false" />
+      <Input id="trainingIdInput" placeholder="Training ID" />
+      <Input id="trainingNameInput" placeholder="Training Name" />
+      <Input id="daysInput" placeholder="Number of Days" type="Number"  />
+      <DatePicker id="startDateInput" placeholder="Start Date" />
+      <DatePicker id="completionDateInput" placeholder="Completion Date" />
+      <Input id="statusInput" placeholder="Status" valueHelpRequest="" />
+    </VBox>
+    <footer>
+      <Toolbar id="_IDGenToolbar3" >
+          <Button id="_IDGenButton3" text="Create" press="onCreateConfirm" />
+         <ToolbarSpacer id="_IDGenToolbarSpacer3"  />
+          <Button id="_IDGenButton4" text="Cancel" press="onCreateCancel" />
+      </Toolbar>
+    </footer>
+  </Dialog>
+</core:FragmentDefinition>

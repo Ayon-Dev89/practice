@@ -1,7 +1,7 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    //   "sap/ui/model/odata/v4/ODataModel"
+    //  "sap/ui/model/odata/v4/ODataModel"
 ], (Controller, JSONModel) => {
     "use strict";
     var sModulesParam;
@@ -18,7 +18,9 @@ sap.ui.define([
         },
         _onRouteMatched: function (oEvent) {
             sModulesParam = oEvent.getParameter("arguments").module;
-            var aModules = oModel.bindList("/employeesSRV");
+            var aModules =decodeURIComponent(sModulesParam).split(",");
+            var oModel = this.getView().getModel(); // OData V4 model
+             var oBinding = oModel.bindList("/employeesSRV");
 
             oBinding.requestContexts(0, 100).then(function (aContexts) {
                 var aAllData = aContexts.map(function (oContext) {
@@ -95,8 +97,6 @@ sap.ui.define([
                 module: sModulesParam
             });
         }
-
-
 
     });
 
