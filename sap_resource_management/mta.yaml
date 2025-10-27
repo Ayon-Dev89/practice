@@ -1,0 +1,162 @@
+_schema-version: 3.3.0
+ID: sap_resource_management
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: sap_resource_management-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: sap_resource_management-db
+      - name: sap_resource_management-destination
+
+  - name: sap_resource_management-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: sap_resource_management-db
+
+  - name: sap_resource_management-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: sap_resource_management-auth
+      - name: srv-api
+      - name: sap_resource_management-html5-repo-host
+        parameters:
+          content-target: true
+          config:
+            HTML5Runtime_enabled: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: sap_resource_managementproject1
+          artifacts:
+            - project1.zip
+          target-path: app/
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+
+  - name: sap_resource_managementproject1
+    type: html5
+    path: app/project1
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+
+  - name: sap_resource_management-destinations
+    type: com.sap.application.content
+    requires:
+      - name: sap_resource_management-auth
+        parameters:
+          service-key:
+            name: sap_resource_management-auth-key
+      - name: sap_resource_management-html5-repo-host
+        parameters:
+          service-key:
+            name: sap_resource_management-html5-repo-host-key
+      - name: srv-api
+      - name: sap_resource_management-destination
+        parameters:
+          content-target: true
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: sap_resource_management-html5-repository
+              ServiceInstanceName: sap_resource_management-html5-repo-host
+              ServiceKeyName: sap_resource_management-html5-repo-host-key
+              sap.cloud.service: sap_resource_management.service
+            - Name: sap_resource_management-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: sap_resource_management-auth
+              ServiceKeyName: sap_resource_management-auth-key
+              sap.cloud.service: sap_resource_management.service
+
+resources:
+  - name: sap_resource_management-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: sap_resource_management-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+  - name: sap_resource_management-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: sap_resource_management-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
