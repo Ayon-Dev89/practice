@@ -33,7 +33,7 @@ sap.ui.define([
         handleRefresh : function() {
             location.reload();
         },
-        onNextPage : function(){
+        onNextPage1 : function(){
             // MessageToast.show("Next Page button pressed ");
               var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("RouteView2");

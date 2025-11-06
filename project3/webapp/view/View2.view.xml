@@ -12,6 +12,28 @@
 		initialMaster="master">
 		<detailPages>
 	<Page id="page1" title = "Supplier Details">
+  <headerContent>
+    <HBox>
+	<items>
+	 <core:Icon src="sap-icon://contrast" />
+      <Switch
+        state="false"
+        customTextOn="Dark"
+        customTextOff="Light"
+        change="onThemeSwitch"
+      />
+	  </items>
+    </HBox>
+  </headerContent>
+
+
+
+	<Button
+    icon="sap-icon://slim-arrow-right"
+    press=".onNextPage"
+    tooltip="Next Page"
+	class=".previousButton" />
+
 	
 		<f:SimpleForm id="form1"
 			editable="false"
@@ -55,8 +77,8 @@
     	<footer>
 			<OverflowToolbar id="toolbar">
 				<ToolbarSpacer id="toolbar1"/>
-				<Button id="button1" text="Save" type="Accept" press="OnSave" />
-				<Button id="button2" text="Delete" type="Reject" press="OnDelete" />
+				<Button id="button1" text="Save" type="Accept" press=".onSave" />
+				<Button id="button2" text="Delete" type="Reject" press=".onDelete" />
 
 			</OverflowToolbar>
 		</footer>
@@ -70,11 +92,19 @@
                 id="page2"
 				title="Product Details">
         <SearchField id="search" width="100%" search="onSearch" />
+
         <Button
     icon="sap-icon://slim-arrow-left"
-    press=".onPreviousPage"
-    tooltip="Next Page"
+    press=".onPreviousPage1"
+    tooltip="Previous Page"
     class= "previousButton" />
+
+	<Button
+    icon="sap-icon://slim-arrow-right"
+    press=".onNextPage2"
+    tooltip="Next Page"
+	class="nextArrowButton" />
+
         <List  items="{MasterModel>/}" id="Master"
 		headerText="">
 

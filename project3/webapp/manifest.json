@@ -49,6 +49,7 @@
       "minUI5Version": "1.84.14",
       "libs": {
         "sap.m": {},
+        "sap.f":{},
         "sap.ui.core": {}
       }
     },
@@ -100,6 +101,20 @@
           "target": [
             "TargetView2"
           ]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "View2",
+          "target": [
+            "TargetView2"
+          ]
+        },
+        {
+          "name": "RouteView3",
+          "pattern": "View3",
+          "target": [
+            "TargetView3"
+          ]
         }
       ],
       "targets": {
@@ -110,6 +125,10 @@
         "TargetView2": {
           "viewId": "View2",
           "viewName": "View2"
+        },
+        "TargetView3": {
+          "viewId": "View3",
+          "viewName": "View3"
         }
 
       }

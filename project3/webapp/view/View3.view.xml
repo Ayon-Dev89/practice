@@ -1,0 +1,206 @@
+
+<mvc:View controllerName="com.cg.ayon.project3.controller.View3"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:f="sap.f"
+		xmlns:l="sap.ui.layout"
+		xmlns:ly="sap.ui.layout.form">
+		<f:FlexibleColumnLayout id="fcl" layout="OneColumn">
+		<f:beginColumnPages>
+		<Page id="masterpage" title="Product List">
+		<Button
+    icon="sap-icon://slim-arrow-left"
+    press=".onPrevPage"
+    tooltip="Prev Page"
+	class="previousButton" />
+		<Table
+					id="table"
+					items="{MasterModel>/}"
+					itemPress="onItemPress"
+					sticky="HeaderToolbar,ColumnHeaders"
+					growing="true"
+  					growingScrollToLoad="true"
+ 					inset="false"
+					width="90%">
+
+
+				<headerToolbar>
+				<Toolbar id="ToolbarID">
+			
+				<Label text="Product ID:"/>
+  						<SearchField id="search1" width="20%" placeholder="Enter ID" search="onSearch"/>
+				<Label text="Name:"/>
+  						<SearchField id="search2" width="20%" placeholder="Enter Name" search="onSearch1"/>
+					  <!-- <ToolbarSpacer/> -->
+					  <MultiComboBox
+					id="filterBox"
+					items="{filterModel>/Categories}"
+					selectionChange="onFilterChange"
+					placeholder="Filter by Category"
+					width="20%" >
+					<core:Item key="{filterModel>id}" text="{filterModel>label}" />
+     				 </MultiComboBox>
+
+				<Button text="Sort by Price" type="Transparent" press="onSortPrice"/>
+				<ToolbarSpacer/>
+		<Switch
+			state="false"
+			customTextOn="Dark"
+			customTextOff="Light"
+			change="onThemeSwitch"
+			/>
+
+				</Toolbar>
+				</headerToolbar>
+
+					<columns >
+						<Column>
+							<Text text="Product ID" />
+						</Column>
+						<Column >
+							<Text text="Name"/>
+						</Column>
+						<Column>
+							<Text text="Category"/>
+						</Column>
+						<Column >
+							<Text text="Price"/>
+						</Column>
+					</columns>
+
+					<items>
+						<ColumnListItem type="Navigation">
+							<cells>
+								<Text text="{MasterModel>ProductID}" />
+								<Text text="{MasterModel>Name}" />
+								<Text text="{MasterModel>Category}" />
+								<!-- <Text text="{MasterModel>SupplierName}" /> -->
+								<Text text="{MasterModel>Price}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+
+		</Page>
+		</f:beginColumnPages>
+  <f:midColumnPages>
+    <Page id="detailpage" title="{DetailModel>/Name}"
+	showHeader="true">
+	<headerContent>
+	<Button text="edit" type="Emphasized" press="onEdit"/>
+    <Button icon="sap-icon://decline" tooltip="Close" press="onCloseDetail" />
+	 <Button
+        icon="{= ${DetailView>/isFullScreen} ? 'sap-icon://exit-full-screen' : 'sap-icon://full-screen'}"
+        press=".onToggleFullScreen"
+        tooltip="Full Screen"
+      />
+
+  </headerContent>
+
+      <VBox id="detailContent" />
+		<IconTabBar >
+		<items>
+			<IconTabFilter
+				id="orderItemTab"
+				key="orderItems"
+				icon="sap-icon://sales-order"
+				text="Items"
+				>
+
+				<Table id="table1" items="{DetailModel>/ToSalesOrderLineItems/results}">
+				
+				<columns>
+				<Column >
+				<Text text="SalesOrder ID"/>
+				</Column>
+				<Column >
+				<Text text="Item Position"/>
+				</Column>
+				<Column >
+				<Text text="Note"/>
+				</Column>
+				<Column >
+				<Text text="Gross Amount"/>
+				</Column>
+				<Column >
+				<Text text="Delivery Date"/>
+				</Column>
+				<Column >
+				<Text text="Quantity"/>
+				</Column>
+				<Column >
+				<Text text="Currency Code"/>
+				</Column>
+				</columns>
+				<items>
+				<ColumnListItem >
+				<cells>
+          		<Text text="{DetailModel>SalesOrderID}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>ItemPosition}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>Note}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>GrossAmount}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>DeliveryDate}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>Quantity}" />
+		        </cells>
+				<cells>
+          		<Text text="{DetailModel>CurrencyCode}" />
+		        </cells>
+				</ColumnListItem>
+				</items>
+				</Table>
+
+				</IconTabFilter>
+			
+			<IconTabFilter id="supplierTab" icon="sap-icon://supplier" text="Suppliers" key="suppliers">
+			<!-- <List id="list1" items="{DetailModel>/ToSupplier}"> -->
+			
+			<ly:SimpleForm id="form2"
+			editable="false"
+			layout="ColumnLayout"
+			columnsM="2"
+			columnsL="3"
+			columnsXL="4"
+			>
+			<ly:content>
+				 
+				<Label text="SupplierName" />
+				<Text  text="{DetailModel>/SupplierName}" />
+				<Label text="Supplier ID" />
+				<Text  text="{DetailModel>/SupplierID}" />
+				<Label text="City" />
+				<Text  text="{DetailModel>/ToSupplier/Address/City}" />
+				<Label text="PostalCode" />
+				<Text  text="{DetailModel>/ToSupplier/Address/PostalCode}" />
+				<Label text="Street" />
+				<Text  text="{DetailModel>/ToSupplier/Address/Street}" />
+				<Label text="Country" />
+				<Text  text="{DetailModel>/ToSupplier/Address/Country}" />
+				<Label text="CompanyName" />
+				<Text  text="{DetailModel>/ToSupplier/CompanyName}" />
+				<Label text="Email" />
+				<Text  text="{DetailModel>/ToSupplier/EmailAddress}" />
+				<Label text="PhoneNumber" />
+				<Text  text="{DetailModel>/ToSupplier/PhoneNumber}" />
+				<Label text="CurrencyCode" />
+				<Text  text="{DetailModel>/ToSupplier/CurrencyCode}" />
+			</ly:content>
+		</ly:SimpleForm>
+			</IconTabFilter>
+		</items>
+		</IconTabBar>
+    </Page>
+  </f:midColumnPages>
+		</f:FlexibleColumnLayout>
+		</mvc:View>
+
