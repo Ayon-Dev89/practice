@@ -1,0 +1,32 @@
+{
+  "name": "excelupload",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-excelapp": "cds watch --open com.ayon.excelapp/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-repo": true,
+      "workzone": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ]
+}

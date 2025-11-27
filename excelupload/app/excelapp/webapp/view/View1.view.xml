@@ -1,0 +1,41 @@
+<mvc:View controllerName="com.ayon.excelapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified">
+    <Page id="page" title="{i18n>title}">
+    <l:VerticalLayout>
+		<u:FileUploader
+			id="fileUploader"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			tooltip="Upload your file to the local server"
+            change="onUploadExcelFile"
+			uploadComplete="handleUploadComplete"/>
+	</l:VerticalLayout>
+     <VBox class="sapUiSmallMargin">
+    <Table id="excelTable" inset="false" items="{TableData>/}">
+      <columns>
+        <Column><Text text="ID"/></Column>
+        <Column><Text text="Name"/></Column>
+        <Column><Text text="Value"/></Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{TableData>ID}"/>
+            <Text text="{TableData>Name}"/>
+            <Text text="{TableData>Value}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+
+    <HBox class="sapUiSmallMarginTop">
+      <Button text="Upload Excel" press="onUpload"/>
+      <Button text="Download Template" press="onDownload"/>
+    </HBox>
+  </VBox>
+
+    </Page>
+</mvc:View>

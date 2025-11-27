@@ -1,0 +1,22 @@
+{
+  "name": "excelapp",
+  "version": "0.0.1",
+  "description": "An SAP Fiori application.",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "dependencies": {
+    "ui5-tooling-modules": "^3.33.7",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "1",
+    "@ui5/cli": "^4.0.16"
+  },
+  "scripts": {
+    "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+  }
+}
